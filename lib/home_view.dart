@@ -18,16 +18,16 @@ class _Home_ViewState extends State<Home_View> {
       paymentIntentData = await paymentintent('20', 'USD');
       await Stripe.instance.initPaymentSheet(
         paymentSheetParameters: SetupPaymentSheetParameters(
-            setupIntentClientSecret:
-                'sk_test_51N1RXfSH5SvkgPqemeSQQdNwo8xR7MX670Cyr3cyEvYa27CZgtpFEyvyj2NyE89RDNgVlz7ukNf8RvgD9si5HBLq00fo539R9V',
-            paymentIntentClientSecret: paymentIntentData['client_secret'],
-            customFlow: true,
-            style: ThemeMode.dark,
-            merchantDisplayName: 'name'),
+          setupIntentClientSecret:
+              'sk_test_51N1RXfSH5SvkgPqemeSQQdNwo8xR7MX670Cyr3cyEvYa27CZgtpFEyvyj2NyE89RDNgVlz7ukNf8RvgD9si5HBLq00fo539R9V',
+          paymentIntentClientSecret: paymentIntentData['client_secret'],
+          customFlow: true,
+          style: ThemeMode.dark,
+        ),
       );
       displaypaymentsheet();
     } catch (e) {
-      print('errorrrr: ${e.toString()}');
+      print('error: $e');
       return showDialog(
         context: context,
         builder: (context) {
@@ -45,7 +45,7 @@ class _Home_ViewState extends State<Home_View> {
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text("paid successfully")));
     } catch (e) {
-      print(e);
+      print('error: $e');
       return showDialog(
         context: context,
         builder: (context) {
@@ -74,7 +74,7 @@ class _Home_ViewState extends State<Home_View> {
           });
       return jsonDecode(response.body);
     } catch (e) {
-      print(e);
+      print('error: $e');
       return showDialog(
         context: context,
         builder: (context) {
